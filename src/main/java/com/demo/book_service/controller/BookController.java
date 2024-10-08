@@ -3,6 +3,7 @@ package com.demo.book_service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,5 +36,10 @@ public class BookController {
 	public BookEntity addBook(@RequestBody BookEntity newBook)
 	{
 		return this.bookRepo.saveAndFlush(newBook);
+	}
+	
+	@DeleteMapping("/books/{bid}")
+	public void deleteBook(@PathVariable long bid) {
+		this.bookRepo.deleteById(bid);
 	}
 }
